@@ -21,7 +21,6 @@ initialize: function() {
 	$('.search-modal').on('click',function() { $('#search-modal').modal()});
 	$('.share-modal').on('click',function() { $('#share-modal').modal()});
 	$('.chat-modal').on('click',function() { $('#chat-modal').modal()});
-
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
 		//probably  use this...
 	});
@@ -51,6 +50,7 @@ saveMsg: function (evt) {
 		var name = $('#name-input').val();
 		var title = $('#title-input').val();
 		var text = $('#message-input').val();
+		if (!name || !title || !text) { $('#alert-modal').modal(); return; }
 		if (!this.userLocation || !this.userLocation.lat || !this.userLocation.lon) {
 			$('#alert-modal').modal(); return;
 		}
@@ -78,24 +78,18 @@ enableEventClickHandler: function() {
     this.target.text('Click Map!');
     var action = (activate) ? 'enableClickHandler' : 'disableClickHandler';
 	if (action === 'enableClickHandler') {
-	    this.enableMapClick();
+	    this.mapClickHandler = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
 	}
 	if (action === 'disableClickHandler') {
-	    this.disableMapClick();
+        dojo.disconnect(this.mapClickHandler);
+		this.target.removeClass('btn-warning').text('Select location on map.');
 	}
-},
-enableMapClick: function () {
-    this.mapClickHandler = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
-},
-disableMapClick: function () {
-    dojo.disconnect(this.mapClickHandler);
-    this.target.removeClass('btn-warning');
-    this.target.text('Add event to map');
 },
 onMapClick: function (evt) {
 	var x = esri.geometry.xyToLngLat(evt.mapPoint.x, evt.mapPoint.y, true);
 	this.userLocation = { lat: x[1], lon: x[0] };
-	this.disableMapClick();
+    dojo.disconnect(this.mapClickHandler);
+	this.target.removeClass('btn-warning').text('Select location on map.');
 },        
 activateClickListener: function() {//new place for this
 	var $this = this;
@@ -108,6 +102,7 @@ activateClickListener: function() {//new place for this
 },
 displayChatMessages: function() {
 	var $this = this;
+		$('#msg-container').empty();
 	_.each(this.messages, function (message) {
 		var currentTimeStamp = new Date().getTime();
 		timeElapsed =  Math.floor((currentTimeStamp - message.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
