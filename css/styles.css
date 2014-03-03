@@ -1,0 +1,288 @@
+@charset "UTF-8";
+/*GLOBAL STYLES FOR ALL PAGES*/
+
+/*==Browser Resets==*/
+html, body {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 1em;
+    height: 100%;
+    width: 100%;
+}
+ul, p {
+    padding: 0;
+    margin: 0;
+}
+/*==End Browser Resets==*/
+
+
+/* nav */
+.header-title p {
+	line-height: 50px;
+	margin-left: 8px;
+}
+.navbar {
+	color: #fff;
+	border: 0;
+	border-radius: 0;
+	margin-bottom: 0;
+}
+.navbar-inverse {
+    margin: 0;
+}
+#collapse {
+	border: none;
+}
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:focus {
+    background: #222;
+    border: none;
+    color: #fff;
+    margin-bottom: 0;
+}
+.navbar-inverse .navbar-toggle:hover {
+    background-color: #222;
+    color: #669900;
+}
+.container-fluid > .navbar-header {
+    margin: 0;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #f6f6f6;
+}
+.navbar-inverse .nav span {
+	display: inline;
+	margin-left: 8px;
+}
+.navbar-inverse .nav li > a {
+	/*font-size: 24px;*/
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.activeNav {
+	/*background: #669900;*/
+	color: #669900;
+}
+
+ul.nav.navbar-nav {
+    margin: 0;
+}
+ul.nav.navbar-nav li {
+    padding-left: 10px;
+    cursor: pointer;
+}
+.navbar-collapse,
+.navbar-collapse ul {
+	z-index: 10;
+    background: #222;
+}
+.navbar-collapse ul li {
+    z-index: 10;
+    background: #222;
+}
+
+.show-map {
+    cursor: pointer;
+}
+.show-map:hover {
+    color: #669900;
+}
+
+
+
+/*HELPER CLASSES*/
+
+.no-padding {
+    padding: 0;
+}
+.no-margin {
+    margin: 0;
+}
+.no-mobile {
+    display: none;
+}
+.visuallyhidden {
+	border:0;
+	clip:rect(0 0 0 0);
+	height:1px;
+	margin:-1px;
+	overflow:hidden;
+	padding:0;
+	position:absolute;
+	width:1px
+}
+
+
+/*=====MOBILE FIRST======*/
+
+
+
+/* sidebar */
+#aside {
+	position:absolute;
+    right: 0;
+    left: 0;
+    top: 50px;
+    bottom: 0;
+	background:#fff;
+	border-right:solid 1px #b3b5a5;
+	overflow: auto;
+	font-size: 16px;
+    z-index: 3;
+}
+#aside header {
+	padding: 18px 0 12px 0;
+}
+.search-section {
+	padding: 4px 0 16px 0;
+	border-bottom: 1px solid #d6d6d6;
+}
+.search-section .section-title {
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 8px;
+	margin-bottom: 14px;
+}
+.search-section .section-title a {
+	color: #909090;
+}
+.search-section .section-title a:hover {
+	color: #404040;
+}
+.search-section .section-title a.open {
+	color: #404040;
+}
+.search-section .section-title i {
+	float: right;
+	font-size:	14px;
+}
+.search-section .col-xs-3 {
+	padding-left: 0;
+}
+.side-label {
+	padding-right: 6px;
+	padding-top: 4px
+}
+.search-section:last-child {
+	border-color: transparent;
+}
+
+#add-event-btn {
+    margin-top: 15px;
+    margin-left: 25%;
+}
+
+/* results view */
+#search-results {
+	list-style:none;
+	padding-left:0;
+	margin:1em 0 0 0
+}
+.mainLegendItem {
+	text-align:left;
+	margin:0 10px;
+	padding:4px 0;
+	border-top:solid 1px #bfbfbf
+}
+.nested {
+    text-align: left;
+    padding-left: 15px;  
+}
+#search-results li:last-child {
+	border-bottom:solid 1px #bfbfbf
+}
+#search-results li img {
+	margin:0 15px 3px 0
+}
+
+/* map */
+#map {
+	position: absolute;
+	top: 50px;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	background: #f5f5f5;
+	z-index: 1;
+}
+
+/*TWITTER TYPEAHEAD*/
+.twitter-typeahead {
+    width: 100%;
+}
+.tt-query {
+
+}
+.tt-hint {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+}
+.tt-dropdown-menu {
+    white-space: pre;
+    z-index: 1000;
+    height: auto;
+    padding: 0;
+    margin: 2px 0 0 0;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.tt-suggestion {
+  padding: 3px 20px;
+  line-height: 20px;
+}
+.tt-suggestion.tt-cursor {
+  color: #669900;
+}
+.tt-is-under-cursor {
+	color: #669900;
+}
+/*END TWITTER TYPEAHEAD*/
+
+
+/* ==================
+     MEDIA QUERIES
+   ================== */
+/* Small devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #map {
+        top: 50px;
+        left: 0;
+        right: 0;
+
+    }
+    #aside {
+	    clear:both;
+        width: 350px;
+	    display:block;
+	    left:0;
+	    top:50px;
+	    overflow: auto;
+    }
+    .show-search {
+        display: none;
+    }
+    .show-map {
+        display: none;
+    }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+/*END MEDIA QUERIES*/

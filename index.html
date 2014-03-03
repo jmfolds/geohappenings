@@ -1,0 +1,230 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>100 Lines</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- STYLES -->
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300italic' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="javascript/libs/leaflet-0.7.2/leaflet.css"></script>
+
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="bower_components/modernizr/modernizr.js"></script>
+
+
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid no-padding">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="header-title">
+                <p class="col-xs-3">App Title</p>
+                <p class="show-map" class="col-xs-3" ><i class="fa fa-globe"></i></p>
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse no-padding" id="collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="chat-modal" title="Chat"><i class="fa fa-bullhorn"></i><span>What's Happening?</span></a></li>
+                <li><a class="share-modal" title="Share"><i class="fa fa-sign-in"></i><span>Share Something</span></a></li>
+                <li><a class="search-modal" title="Search"><i class="fa fa-search"></i><span>Search</span></a></li>
+                <li><a class="about-modal" title="About"><i class="fa fa-question-circle"></i><span>About</span></a></li>
+                <!-- <li class="current-location"><a title="Find Location"><i class="fa fa-globe"></i><span>Find Me</span></a></li> -->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        <!-- Button trigger modal -->
+<!--         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Launch demo modal
+        </button> -->
+                <!-- What's happening Modal -->
+        <div class="modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">What's Happening?</h4>
+              </div>
+              <div class="modal-body">
+                <div id="chat">
+                    <div id='welcome-msg'></div>
+                    <div id='msg-container'></div>
+                </div> 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Share Modal -->
+        <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Share!</h4>
+              </div>
+              <div class="modal-body">
+                        <input type="text" id="name-input" class="form-control" placeholder="Name">
+                        <input type='text' id='title-input' class="form-control" placeholder='Title'>
+                        <input type='text' id='message-input' class="form-control" placeholder='Message'>
+                        <div class='btn btn-primary current-location'>Use my Location</div>
+                        <div id='add-event-btn' class='btn btn-primary'>Select on Map</div>
+                        <div class='btn btn-primary share-message'>Share!</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- about Modal -->
+        <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">About...</h4>
+              </div>
+              <div class="modal-body">
+                <p>About...</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+                <!-- Search Modal -->
+        <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Search...</h4>
+              </div>
+              <div class="modal-body">
+                <input id="search-input" type="text" class="form-control" placeholder="Search">
+                <div class="btn-group search-type-radio" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="search-options" value="users"> Users
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="search-options" value="events"> Events
+                    </label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+                <!-- Alert Modal -->
+        <div class="modal fade" id="alert-modal" tabindex="-1" role="dialog" aria-labelledby="alert-modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="alert-h4">Oops! We couldn't get your location!</h4>
+              </div>
+              <div class="modal-body">
+                Something happened.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<!-- <div id="aside">
+    <div class="container-fluid">
+        <header>
+            <p>
+            Welcome! Let others know about hot happenings! View "What's Happening" and then join in on the fun.
+            </p>
+        </header>
+        <form role="form" id="sidebar-search">
+            <div class="accordion" id="accordion-form">
+                <div class="panel search-section">
+                    <h3 class="section-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-a">Share What's Happening<i class="fa fa-angle-double-down"></i></a></h3>
+                    <div id="collapse-a" class="collapse in">
+                        <input type="text" id="name-input" class="form-control" placeholder="Name">
+                        <input type='text' id='title-input' class="form-control" placeholder='Title'>
+                        <input type='text' id='message-input' class="form-control" placeholder='Message'>
+                        <div class='btn btn-primary current-location'>Use my Location</div>
+                        <div id='add-event-btn' class='btn btn-primary'>Select on Map</div>
+                        <div class='btn btn-primary share-message'>Share!</div>
+
+
+                    </div>
+                </div>
+                <div class="panel search-section">
+                    <h3 class="section-title"><a class="accordion-toggle open" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-b">What's Happening Already?<i class="fa fa-angle-double-down"></i></a></h3>
+                    <div id="collapse-b" class="collapse">
+                        <div id="chat">
+                            <div id='welcome-msg'></div>
+                            <div id='msg-container'></div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="panel search-section">
+                    <h3 class="section-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-c">Search<i class="fa fa-angle-double-down"></i></a></h3>
+                    <div id="collapse-c" class="collapse">
+                        <input id="search-input" type="text" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+                 <div class="panel search-section">
+                    <h3 class="section-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-d">Add Event<i class="fa fa-angle-double-down"></i></a></h3>
+                    <div id="collapse-d" class="collapse">
+                        <input id="event-input" type="text" class="form-control" placeholder="Share an event to the map">
+                        <div id='add-event-btn' class='btn btn-primary' disabled>Add event to map</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="results-container"></div>
+    </div>
+</div> -->
+<div id="map-canvas">
+    <div id="map"></div>
+</div>  
+        <!-- libs -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/firebase/firebase.js"></script>
+        <script src="bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+        <script src="http://js.arcgis.com/3.8/"></script>
+        <!-- <script src="javascript/libs/leaflet-0.7.2/leaflet.js"></script> -->
+        <!-- <script src="javascript/libs/esri-leaflet-src.js"></script> -->
+        <script src="javascript/libs/jsonConverters.js"></script>
+          
+        <!-- JS -->
+        <script src="javascript/App.js"></script>
+
+</body>
+</html>
