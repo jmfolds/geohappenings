@@ -2,11 +2,6 @@ dojo.require('esri.map', 'esri.tasks.locator', 'esri.geometry.webMercatorUtils')
 dojo.addOnLoad(function () {//run after page load
 var AppView = Backbone.View.extend({
 el: 'body',
-events: {
-  	'keypress #message-input': 'saveMsg',
-  	'click .share-message': 'saveMsg',
-  	'click #add-event-btn': 'enableEventClickHandler'
-},
 initialize: function() {
 	_.bindAll.apply(_, [this].concat(_.functions(this)));
 	var $this = this;
@@ -21,10 +16,13 @@ initialize: function() {
 	$('.search-modal').on('click',function() { $('#search-modal').modal()});
 	$('.share-modal').on('click',function() { $('#share-modal').modal()});
 	$('.chat-modal').on('click',function() { $('#chat-modal').modal()});
+	$('.share-message').on('click',function(evt) { $this.saveMsg(evt) });
+	$('#message-input').on('keypress',function(evt) { $this.saveMsg(evt) });
+	$('.current-location').on('click',function() { $this.getLocation() });
+	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
 		//probably  use this...
 	});
-	$('.current-location').on('click',function() { $this.getLocation() });
 	this.fb.on('value', function (ss) {
 		var val = ss.val();
 		var user;
@@ -48,9 +46,8 @@ saveMsg: function (evt) {
 		var exists;
 		var currentTimeStamp = new Date().getTime(); //get time of day and then display how many minutes its been since last post??
 		var name = $('#name-input').val();
-		var title = $('#title-input').val();
 		var text = $('#message-input').val();
-		if (!name || !title || !text) { $('#alert-modal').modal(); return; }
+		if (!name || !text) { $('#alert-modal').modal(); return; }
 		if (!this.userLocation || !this.userLocation.lat || !this.userLocation.lon) {
 			$('#alert-modal').modal(); return;
 		}
@@ -58,7 +55,7 @@ saveMsg: function (evt) {
 			exists = (ss.val() !== null)
 		});
 		if(!exists){ this.fb.child(name).set({text: name}) };
-		this.fb.child(name).child('messages').push({ title: title, text: text, lat: this.userLocation.lat, lon: this.userLocation.lon, timeStamp: currentTimeStamp });
+		this.fb.child(name).child('messages').push({ text: text, lat: this.userLocation.lat, lon: this.userLocation.lon, timeStamp: currentTimeStamp });
 		$('#message-input').val('');
 	}
 },
