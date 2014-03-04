@@ -6,7 +6,6 @@ initialize: function() {
 	_.bindAll.apply(_, [this].concat(_.functions(this)));
 	var $this = this;
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
-	this.userLocation = null;
 	this.pointSymbol = new esri.symbol.SimpleMarkerSymbol();
 	this.pointSymbol.setSize(14);
 	this.pointSymbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 1));
@@ -21,7 +20,8 @@ initialize: function() {
 	$('.current-location').on('click',function() { $this.getLocation() });
 	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
-		//probably  use this...
+		//typeahead selected code
+		//goes here
 	});
 	this.fb.on('value', function (ss) {
 		var val = ss.val();
@@ -67,12 +67,9 @@ getLocation: function () {
 onLocationSuccess: function(position) {
 	this.userLocation = {lat: String(position.coords.latitude), lon: String(position.coords.longitude)};
 },
-//yo jeremy these next like 4 functions i stole from my windshield code, really ghetto
 enableEventClickHandler: function() {
-	this.target = this.$('#add-event-btn');
-    this.target.toggleClass('btn-warning');
-    var activate = this.target.hasClass('btn-warning');
-    this.target.text('Click Map!');
+	$('#add-event-btn').button('toggle').addClass('btn-warning')
+    var activate = $('#add-event-btn').hasClass('btn-warning');
     var action = (activate) ? 'enableClickHandler' : 'disableClickHandler';
 	if (action === 'enableClickHandler') {
 	    this.mapClickHandler = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
@@ -86,15 +83,14 @@ onMapClick: function (evt) {
 	var x = esri.geometry.xyToLngLat(evt.mapPoint.x, evt.mapPoint.y, true);
 	this.userLocation = { lat: x[1], lon: x[0] };
     dojo.disconnect(this.mapClickHandler);
-	this.target.removeClass('btn-warning').text('Select location on map.');
+	$('#add-event-btn').removeClass('btn-warning').text('Select location on map.');
 },        
 activateClickListener: function() {//new place for this
 	var $this = this;
 	$('.chatItem').on('click', function(evt) {
-	var lon = evt.currentTarget.dataset.lon;
-	var lat = evt.currentTarget.dataset.lat;
-	var pt = new esri.geometry.Point(lon, lat)
-	$this.map.centerAndZoom(pt, 25);
+		var x = evt.currentTarget.dataset;
+		var pt = new esri.geometry.Point(x.lon, x.lat)
+		$this.map.centerAndZoom(pt, 25);
 	});
 },
 displayChatMessages: function() {
