@@ -68,7 +68,7 @@ onLocationSuccess: function(position) {
 	this.userLocation = {lat: String(position.coords.latitude), lon: String(position.coords.longitude)};
 },
 enableEventClickHandler: function() {
-	$('#add-event-btn').button('toggle').addClass('btn-warning')
+	$('#add-event-btn').toggleClass('btn-warning');
     var activate = $('#add-event-btn').hasClass('btn-warning');
     var action = (activate) ? 'enableClickHandler' : 'disableClickHandler';
 	if (action === 'enableClickHandler') {
@@ -76,14 +76,14 @@ enableEventClickHandler: function() {
 	}
 	if (action === 'disableClickHandler') {
         dojo.disconnect(this.mapClickHandler);
-		this.target.removeClass('btn-warning').text('Select location on map.');
+		$('#add-event-btn').removeClass('btn-warning');
 	}
 },
 onMapClick: function (evt) {
 	var x = esri.geometry.xyToLngLat(evt.mapPoint.x, evt.mapPoint.y, true);
 	this.userLocation = { lat: x[1], lon: x[0] };
     dojo.disconnect(this.mapClickHandler);
-	$('#add-event-btn').removeClass('btn-warning').text('Select location on map.');
+	$('#add-event-btn').removeClass('btn-warning');
 },        
 activateClickListener: function() {//new place for this
 	var $this = this;
