@@ -95,12 +95,12 @@ activateClickListener: function() {//new place for this
 },
 displayChatMessages: function() {
 	var $this = this;
-		$('#msg-container').empty();
+		$('#chat-container').empty();
 	_.each(this.messages, function (message) {
 		var currentTimeStamp = new Date().getTime();
 		timeElapsed =  Math.floor((currentTimeStamp - message.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
-		$('<div/>').addClass('chatItem').attr('data-lat', message.lat).attr('data-lon', message.lon).text(message.name + ' says: ' + message.text).append($('<em/>').text('--' + timeElapsed + ' minutes ago.')).appendTo($('#msg-container'));
-		if (message.lat && message.lon) {
+		$('<li class="list-group-item chatItem"></li>').append('<div class="chat-date">' + timeElapsed + ' minutes ago</div><div>'+ message.text + '</div>').attr('data-lat', message.lat).attr('data-lon', message.lon).appendTo($('#chat-container'));
+		if (message.lat && message.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
 			var pt = new esri.geometry.Point(message.lon, message.lat);
 			var graphic = new esri.Graphic(pt, $this.pointSymbol);
 			$this.map.graphics.add(graphic);
