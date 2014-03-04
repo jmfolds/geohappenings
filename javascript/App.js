@@ -19,6 +19,7 @@ initialize: function() {
 	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
 		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 25);
+		$('#search-modal').modal('hide');
 	});
 	this.fb.on('value', function (ss) {
 		$this.messages = [];

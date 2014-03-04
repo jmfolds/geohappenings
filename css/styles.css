@@ -86,7 +86,9 @@ ul.nav.navbar-nav li {
 .show-map:hover {
     color: #669900;
 }
-
+.chat-item {
+    cursor: pointer;
+}
 
 
 /*HELPER CLASSES*/
@@ -166,12 +168,12 @@ ul.nav.navbar-nav li {
 .search-section:last-child {
 	border-color: transparent;
 }
-
-#add-event-btn {
-    margin-top: 15px;
-    margin-left: 25%;
+.row .col-xs-5 {
+    margin: 4%;
 }
-
+.share-message {
+    text-align: right;
+}
 /* results view */
 #search-results {
 	list-style:none;
@@ -203,6 +205,10 @@ ul.nav.navbar-nav li {
 .chat-date {
     font-weight: bold;
     font-size: .7em;
+}
+
+input {
+    margin: 10px;
 }
 
 /* map */

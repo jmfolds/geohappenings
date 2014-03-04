@@ -34,8 +34,7 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="header-title">
-                <p class="col-xs-3">App Title</p>
-                <p class="show-map" class="col-xs-3" ><i class="fa fa-globe"></i></p>
+                <p>GeoHappenings</p>
             </div>
         </div>
 
@@ -82,9 +81,12 @@
       <div class="modal-body">
                 <input type="text" id="name-input" class="form-control" placeholder="Name">
                 <input type='text' id='message-input' class="form-control" placeholder='Message'>
-                <div class='btn btn-primary current-location'>Use my Location</div>
-                <div id='add-event-btn' class='btn btn-primary'>Select on Map</div>
+                <div class="row">
+                  <div class='btn btn-primary current-location col-xs-5'>Use my Location</div>
+                  <div id='add-event-btn' class='btn btn-primary col-xs-5'>Select on Map</div>
+                </div>
                 <div class='btn btn-primary share-message'>Share!</div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
