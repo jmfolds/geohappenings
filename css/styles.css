@@ -194,6 +194,16 @@ ul.nav.navbar-nav li {
 	margin:0 15px 3px 0
 }
 
+.msg-container{
+    height: 350px;
+    overflow: auto;
+}
+
+.chat-date {
+    font-weight: bold;
+    font-size: .7em;
+}
+
 /* map */
 #map {
 	position: absolute;
