@@ -7,10 +7,8 @@ initialize: function() {
 	var $this = this;
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
 	this.pointSymbol = new esri.symbol.SimpleMarkerSymbol();
-	this.pointSymbol.setSize(14);
-	this.pointSymbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 1));
 	this.pointSymbol.setColor(new dojo.Color([0, 255, 0, 0.25]));
-	this.map = new esri.Map('map', {basemap: 'gray', center: [-116.538208, 33.826077], zoom: 10 }); //The first slash of this comment marks 100 characters
+	this.map = new esri.Map('map', {basemap: 'gray', center: [-116.538208, 33.826077], zoom: 10 });//The first slash of this comment marks 100 characters
 	$('.about-modal').on('click',function() { $('#about-modal').modal()});
 	$('.search-modal').on('click',function() { $('#search-modal').modal()});
 	$('.share-modal').on('click',function() { $('#share-modal').modal()});
@@ -29,26 +27,23 @@ initialize: function() {
 				$this.messages.push(item2)
 			});
 		});
-		$this.displayChatMessages();
-		$this.activateClickListener();//TODO: Need a new place for this
-		$this.initTypeahead();
+		$this.displayChatMessages() & $this.activateClickListener() & $this.initTypeahead();//TODO:click listener new home?
 	});
 },
 saveMsg: function (evt) {
 	if (evt.keyCode === 13 || !evt.keyCode) {
 		var exists;
-		var currentTimeStamp = new Date().getTime(); //get time of day and then display how many minutes its been since last post??
+		var tC = new Date().getTime(); //get time of day and then display how many minutes its been since last post??
 		var name = $('#name-input').val();
 		var text = $('#message-input').val();
 		if (!name || !text) { $('#alert-modal').modal(); return; }
-		if (!this.userLocation || !this.userLocation.lat || !this.userLocation.lon) {
+		if (!this.loc || !this.loc.lat || !this.loc.lon) {
 			$('#alert-modal').modal(); return;
 		}
-		this.fb.on('value', function (ss) {
-			exists = (ss.val() !== null)
-		});
+		this.fb.on('value', function (ss) {	exists = (ss.val() !== null) });
 		if(!exists){ this.fb.child(name).set({text: name}) };
-		this.fb.child(name).child('messages').push({ name: name, text: text, lat: this.userLocation.lat, lon: this.userLocation.lon, timeStamp: currentTimeStamp });
+		this.fb.child(name).child('messages').push({ name: name, text: text, 
+			lat: this.loc.lat, lon: this.loc.lon, timeStamp: tC });
 		$('#message-input').val('');
 	}
 },
@@ -58,24 +53,25 @@ getLocation: function () {
 	} else { $('#alert-modal').modal(); }	
 },
 onLocationSuccess: function(position) {
-	this.userLocation = {lat: String(position.coords.latitude), lon: String(position.coords.longitude)};
+	this.loc = {lat: String(position.coords.latitude), lon: String(position.coords.longitude)};
 },
 enableEventClickHandler: function() {
 	$('#add-event-btn').toggleClass('btn-warning');
     var activate = $('#add-event-btn').hasClass('btn-warning');
     var action = (activate) ? 'enableClickHandler' : 'disableClickHandler';
 	if (action === 'enableClickHandler') {
-	    this.mapClickHandler = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
+	    this.mch = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
+	    $('#share-modal').modal('hide');
 	}
 	if (action === 'disableClickHandler') {
-        dojo.disconnect(this.mapClickHandler);
+        dojo.disconnect(this.mch);
 		$('#add-event-btn').removeClass('btn-warning');
 	}
 },
 onMapClick: function (evt) {
 	var x = esri.geometry.xyToLngLat(evt.mapPoint.x, evt.mapPoint.y, true);
-	this.userLocation = { lat: x[1], lon: x[0] };
-    dojo.disconnect(this.mapClickHandler);
+	this.loc = { lat: x[1], lon: x[0] };
+    dojo.disconnect(this.mch) & $('#share-modal').modal('show');
 	$('#add-event-btn').removeClass('btn-warning');
 },        
 activateClickListener: function() {//new place for this
@@ -88,12 +84,14 @@ activateClickListener: function() {//new place for this
 displayChatMessages: function() {
 	var $this = this;
 		$('#chat-container').empty();
-	_.each(this.messages, function (message) {
-		var currentTimeStamp = new Date().getTime();
-		timeElapsed =  Math.floor((currentTimeStamp - message.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
-		$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' + timeElapsed + ' minutes ago</div><div>'+ message.text + '</div>').attr('data-lat', message.lat).attr('data-lon', message.lon).appendTo($('#chat-container'));
-		if (message.lat && message.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
-			var pt = new esri.geometry.Point(message.lon, message.lat);
+	_.each(this.messages, function (msg) {
+		var tC = new Date().getTime();
+		tE =  Math.floor((tC - msg.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
+		$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' + tE +
+		' minutes ago</div><div>'+ msg.text + '</div>').attr('data-lat', msg.lat).attr('data-lon',
+		 msg.lon).appendTo($('#chat-container'));
+		if (msg.lat && msg.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
+			var pt = new esri.geometry.Point(msg.lon, msg.lat);
 			$this.map.graphics.add(new esri.Graphic(pt, $this.pointSymbol));
 		};
 	});
