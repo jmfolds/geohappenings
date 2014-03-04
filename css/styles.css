@@ -118,6 +118,7 @@ ul.nav.navbar-nav li {
 
 /* sidebar */
 #aside {
+    display: none;
 	position:absolute;
     right: 0;
     left: 0;
@@ -263,6 +264,9 @@ ul.nav.navbar-nav li {
    ================== */
 /* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+    #collapse * {
+        /*display: none;*/
+    }
     #map {
         top: 50px;
         left: 0;
@@ -270,9 +274,9 @@ ul.nav.navbar-nav li {
 
     }
     #aside {
+        /*display: block;*/
 	    clear:both;
         width: 350px;
-	    display:block;
 	    left:0;
 	    top:50px;
 	    overflow: auto;
