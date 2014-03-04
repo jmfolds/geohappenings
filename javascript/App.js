@@ -86,6 +86,11 @@ activateClickListener: function() {//new place for this
 displayChatMessages: function() {
 	var $this = this;
 		$('#chat-container').empty();
+	this.messages.sort(function (a, b) { //this gets the chat log sorted, but 4 lines of code ughh
+	    if (a.timeStamp > b.timeStamp) { return 1; }
+	    if (a.timeStamp < b.timeStamp) { return -1; }
+	    return 0;
+	});
 	_.each(this.messages, function (msg) {
 		var tC = new Date().getTime();
 		tE =  Math.floor((tC - msg.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
