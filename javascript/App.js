@@ -20,25 +20,18 @@ initialize: function() {
 	$('.current-location').on('click',function() { $this.getLocation() });
 	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
-		//typeahead selected code
-		//goes here
+		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 25);
 	});
 	this.fb.on('value', function (ss) {
-		var val = ss.val();
-		var user;
-		$this.users = [];
 		$this.messages = [];
-		_.each(val, function (item) {
-			user = item.text;
-			$this.users.push({text: item.text});
+		_.each(ss.val(), function (item) {
 			_.each(item.messages, function (item2) {
-				item2['name'] = user;
 				$this.messages.push(item2)
 			});
 		});
 		$this.displayChatMessages();
 		$this.activateClickListener();//TODO: Need a new place for this
-		$this.initTypeahead('msgs');
+		$this.initTypeahead();
 	});
 },
 saveMsg: function (evt) {
@@ -55,7 +48,7 @@ saveMsg: function (evt) {
 			exists = (ss.val() !== null)
 		});
 		if(!exists){ this.fb.child(name).set({text: name}) };
-		this.fb.child(name).child('messages').push({ text: text, lat: this.userLocation.lat, lon: this.userLocation.lon, timeStamp: currentTimeStamp });
+		this.fb.child(name).child('messages').push({ name: name, text: text, lat: this.userLocation.lat, lon: this.userLocation.lon, timeStamp: currentTimeStamp });
 		$('#message-input').val('');
 	}
 },
@@ -89,41 +82,32 @@ activateClickListener: function() {//new place for this
 	var $this = this;
 	$('.chatItem').on('click', function(evt) {
 		var x = evt.currentTarget.dataset;
-		var pt = new esri.geometry.Point(x.lon, x.lat)
-		$this.map.centerAndZoom(pt, 25);
+		$this.map.centerAndZoom(new esri.geometry.Point(x.lon, x.lat), 25);
 	});
 },
 displayChatMessages: function() {
 	var $this = this;
-		$('#msg-container').empty();
+	$('#msg-container').empty();
 	_.each(this.messages, function (message) {
 		var currentTimeStamp = new Date().getTime();
 		timeElapsed =  Math.floor((currentTimeStamp - message.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
 		$('<div/>').addClass('chatItem').attr('data-lat', message.lat).attr('data-lon', message.lon).text(message.name + ' says: ' + message.text).append($('<em/>').text('--' + timeElapsed + ' minutes ago.')).appendTo($('#msg-container'));
 		if (message.lat && message.lon) {
 			var pt = new esri.geometry.Point(message.lon, message.lat);
-			var graphic = new esri.Graphic(pt, $this.pointSymbol);
-			$this.map.graphics.add(graphic);
+			$this.map.graphics.add(new esri.Graphic(pt, $this.pointSymbol));
 		};
 	});
 },
-initTypeahead: function (src) {
-	var localSrc = (src === 'users') ? this.users : this.messages;
-	if (!localSrc) { return; }
+initTypeahead: function () {
 	$('#search-input').typeahead('destroy');
 	var bloodhound = new Bloodhound({
-		datumTokenizer: function(d) { 
-			return Bloodhound.tokenizers.whitespace(d.text); },
+		datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.text); },
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: localSrc
+        local: this.messages
 	});
 	bloodhound.initialize();
-    var options = {
-		displayKey: 'text',
-		source: bloodhound.ttAdapter(),
-        templates: { suggestion: _.template('<strong><%=text%></strong>')},
-        minLength: 0
-    };
+    var options = {	displayKey: 'text',	source: bloodhound.ttAdapter(),
+        	templates: { suggestion: _.template('<strong><%=text%></strong>')}};
     $('#search-input').typeahead(null, options);
 }
 });
