@@ -22,7 +22,7 @@ initialize: function() {
 		$('#search-modal').modal('hide');
 	});
 	this.fb.on('value', function (ss) {
-		$this.messages = [];
+		$this.messages = [];	
 		_.each(ss.val(), function (item) {
 			_.each(item.messages, function (item2) {
 				$this.messages.push(item2)
