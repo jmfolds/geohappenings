@@ -22,7 +22,7 @@ initialize: function() {
 		$('#search-modal').modal('hide');
 	});
 	this.fb.on('value', function (ss) {
-		$this.messages = [];	
+		$this.messages = [];
 		_.each(ss.val(), function (item) {
 			_.each(item.messages, function (item2) {
 				$this.messages.push(item2)
@@ -94,9 +94,9 @@ displayChatMessages: function() {
 	_.each(this.messages, function (msg) {
 		var tC = new Date().getTime();
 		tE =  Math.floor((tC - msg.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
-		$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' + tE +
-		' minutes ago</div><div>'+ msg.text + '</div>').attr('data-lat', msg.lat).attr('data-lon',
-		 msg.lon).appendTo($('#chat-container'));
+		$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' +
+		 msg.name +':  '+ tE + ' minutes ago</div><div>'+ msg.text + '</div>')
+	 	.attr('data-lat', msg.lat).attr('data-lon',msg.lon).appendTo($('#chat-container')); 
 		if (msg.lat && msg.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
 			var pt = new esri.geometry.Point(msg.lon, msg.lat);
 			$this.map.graphics.add(new esri.Graphic(pt, $this.pointSymbol));
