@@ -207,6 +207,10 @@ ul.nav.navbar-nav li {
     font-size: .7em;
 }
 
+#about-modal li {
+    margin-left: 6%;
+}
+
 input {
     margin: 10px;
 }
