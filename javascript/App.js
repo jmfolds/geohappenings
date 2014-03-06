@@ -37,7 +37,7 @@ initialize: function() {
 		if(!exists){ this.fb.child(name).set({text: name}) };
 		this.fb.child(name).child('messages').push({ name: name, text: text,
 			lat: this.loc.lat, lon: this.loc.lon, timeStamp: tC });
-		$('#share-modal').modal('hide');
+		$('#share-modal').modal('hide'); $('#message-input').val('');
 	}
 },getLocation: function () {
 	if (navigator.geolocation) {
@@ -65,7 +65,7 @@ initialize: function() {
 	$('.chat-item').on('click', function(evt) {
 		var d = evt.currentTarget.dataset;
 		$this.map.centerAndZoom(new esri.geometry.Point(d.lon, d.lat), 25);
-		$('#message-input').val('');  $('#chat-modal').modal('hide');
+		$('#chat-modal').modal('hide');
 	});
 },displayChatMessages: function() {
 	var $this = this; $('#chat-container').empty();

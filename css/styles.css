@@ -19,6 +19,8 @@ ul, p {
 .header-title p {
 	line-height: 50px;
 	margin-left: 8px;
+    font-size: 24px;
+    padding-right: 40px;
 }
 .navbar {
 	color: #fff;
@@ -44,22 +46,27 @@ ul, p {
     color: #669900;
 }
 .container-fluid > .navbar-header {
+    display: none;
     margin: 0;
 }
 .navbar-inverse .navbar-nav > li > a {
 	color: #f6f6f6;
 }
 .navbar-inverse .nav span {
-	display: inline;
+	display: block;
 	margin-left: 8px;
+    font-size: 12px;
 }
 .navbar-inverse .nav li > a {
-	/*font-size: 24px;*/
+	/*padding-top: 15px;*/
+    height: 50px;
+}
+.navbar-inverse .nav li > a > i {
+    font-size: 24px;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus,
 .activeNav {
-	/*background: #669900;*/
 	color: #669900;
 }
 
@@ -67,8 +74,11 @@ ul.nav.navbar-nav {
     margin: 0;
 }
 ul.nav.navbar-nav li {
-    padding-left: 10px;
+    width: 25%;
+    height: 50px;
+    float: left;
     cursor: pointer;
+    text-align: center;
 }
 .navbar-collapse,
 .navbar-collapse ul {
@@ -89,28 +99,8 @@ ul.nav.navbar-nav li {
 .chat-item {
     cursor: pointer;
 }
-
-
-/*HELPER CLASSES*/
-
-.no-padding {
-    padding: 0;
-}
-.no-margin {
+#collapse {
     margin: 0;
-}
-.no-mobile {
-    display: none;
-}
-.visuallyhidden {
-	border:0;
-	clip:rect(0 0 0 0);
-	height:1px;
-	margin:-1px;
-	overflow:hidden;
-	padding:0;
-	position:absolute;
-	width:1px
 }
 
 
@@ -174,18 +164,8 @@ ul.nav.navbar-nav li {
 .share-message {
     text-align: right;
 }
-/* results view */
-#search-results {
-	list-style:none;
-	padding-left:0;
-	margin:1em 0 0 0
-}
-.mainLegendItem {
-	text-align:left;
-	margin:0 10px;
-	padding:4px 0;
-	border-top:solid 1px #bfbfbf
-}
+
+
 .nested {
     text-align: left;
     padding-left: 15px;  
@@ -274,8 +254,19 @@ input {
    ================== */
 /* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    #collapse * {
-        /*display: none;*/
+    .container-fluid > .navbar-header {
+        display: block;
+        margin: 0;
+    }
+    ul.nav.navbar-nav li {
+        display: inline-block;
+        width: auto;
+        float: none;
+    }
+    .navbar-inverse .nav span {
+        display: inline-block;
+        margin-left: 8px;
+        font-size: 15px;
     }
     #map {
         top: 50px;
@@ -291,12 +282,6 @@ input {
 	    top:50px;
 	    overflow: auto;
     }
-    .show-search {
-        display: none;
-    }
-    .show-map {
-        display: none;
-    }
 
 }
 
@@ -310,3 +295,16 @@ input {
 
 }
 /*END MEDIA QUERIES*/
+
+
+/*HELPER CLASSES*/
+
+.no-padding {
+    padding: 0;
+}
+.no-margin {
+    margin: 0;
+}
+.no-mobile {
+    display: none;
+}

@@ -27,27 +27,17 @@
         <![endif]-->
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid no-padding">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-caret-down"></i>
-            </button>
             <div class="header-title">
                 <p>GeoHappenings</p>
             </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse no-padding" id="collapse">
-            <ul class="nav navbar-nav">
-                <li><a class="chat-modal" title="Chat"><i class="fa fa-bullhorn"></i><span>What's Happening?</span></a></li>
-                <li><a class="share-modal" title="Share"><i class="fa fa-sign-in"></i><span>Share Something</span></a></li>
-                <li><a class="search-modal" title="Search"><i class="fa fa-search"></i><span>Search</span></a></li>
-                <li><a class="about-modal" title="About"><i class="fa fa-question-circle"></i><span>About</span></a></li>
-                <!-- <li class="current-location"><a title="Find Location"><i class="fa fa-globe"></i><span>Find Me</span></a></li> -->
-            </ul>
-        </div><!-- /.navbar-collapse -->
+        <ul class="nav navbar-nav">
+            <li><a class="chat-modal" title="Chat"><i class="fa fa-bullhorn"></i><span>Happenings</span></a></li>
+            <li><a class="share-modal" title="Share"><i class="fa fa-sign-in"></i><span>Share Something</span></a></li>
+            <li><a class="search-modal" title="Search"><i class="fa fa-search"></i><span>Search</span></a></li>
+            <li><a class="about-modal" title="About"><i class="fa fa-question-circle"></i><span>About</span></a></li>
+        </ul>
     </div><!-- /.container-fluid -->
 </nav>
         <!-- What's happening Modal -->
@@ -79,7 +69,7 @@
         <h4 class="modal-title" id="myModalLabel">Share!</h4>
       </div>
       <div class="modal-body">
-                <input type="text" id="name-input" class="form-control" placeholder="Name">
+                <input type="text" id="name-input" class="form-control" placeholder="Name / User ID">
                 <input type='text' id='message-input' class="form-control" placeholder='Message'>
                 <div class="row">
                   <div class='btn btn-primary current-location col-xs-5'>Use my Location</div>
