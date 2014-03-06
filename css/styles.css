@@ -160,6 +160,22 @@ input {
     margin-bottom: 10px;
 }
 
+/* override esri popup */
+.esriPopup .titleButton {
+    top: -29px;
+}
+.esriPopup .titleButton.close {
+    right: -1px;
+
+}
+.esriPopup .titleButton.close:after {
+    content: url('../img/cancel-circle.png');
+
+}
+.titleButton.maximize {
+    display: none;
+}
+
 /* map */
 #map {
 	position: absolute;
