@@ -65,7 +65,7 @@ initialize: function() {
 	$('.chat-item').on('click', function(evt) {
 		var d = evt.currentTarget.dataset;
 		$this.map.centerAndZoom(new esri.geometry.Point(d.lon, d.lat), 25);
-		$('#chat-modal').modal('hide');
+		$('#message-input').val('');  $('#chat-modal').modal('hide');
 	});
 },displayChatMessages: function() {
 	var $this = this; $('#chat-container').empty();
