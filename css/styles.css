@@ -188,6 +188,10 @@ ul.nav.navbar-nav li {
     font-weight: bold;
     font-size: .7em;
 }
+.chat-item:hover {
+    background-color: #222;
+    color: #669900;
+}
 
 #about-modal li {
     margin-left: 6%;
