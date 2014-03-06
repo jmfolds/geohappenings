@@ -7,7 +7,7 @@ initialize: function() {
 	var $this = this;
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
 	this.symbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([0, 255, 0, 0.25]));
-	this.map = new esri.Map('map', {basemap: 'gray', center: [-116.538208, 33.826077], zoom: 10 });
+	this.map = new esri.Map('map', {basemap: 'osm', center: [-116.5382, 33.8260], zoom: 10 });
 	$('.about-modal').on('click',function() { $('#about-modal').modal()});
 	$('.search-modal').on('click',function() { $('#search-modal').modal()});
 	$('.share-modal').on('click',function() { $('#share-modal').modal()});
