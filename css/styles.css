@@ -41,10 +41,6 @@ ul, p {
     color: #fff;
     margin-bottom: 0;
 }
-.navbar-inverse .navbar-toggle:hover {
-    background-color: #222;
-    color: #669900;
-}
 .container-fluid > .navbar-header {
     display: none;
     margin: 0;
@@ -63,11 +59,6 @@ ul, p {
 }
 .navbar-inverse .nav li > a > i {
     font-size: 24px;
-}
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus,
-.activeNav {
-	color: #669900;
 }
 
 ul.nav.navbar-nav {
@@ -141,10 +132,6 @@ ul.nav.navbar-nav li {
 .chat-date {
     font-weight: bold;
     font-size: .7em;
-}
-.chat-item:hover {
-    background-color: #222;
-    color: #669900;
 }
 
 #about-modal li {
@@ -242,6 +229,19 @@ input {
     .container-fluid > .navbar-header {
         display: block;
         margin: 0;
+    }
+    .navbar-inverse .navbar-toggle:hover {
+        background-color: #222;
+        color: #669900;
+    }
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus,
+    .activeNav {
+        color: #669900;
+    }
+    .chat-item:hover {
+        background-color: #222;
+        color: #669900;
     }
     .navbar-nav > li > a {
         padding-top: 10px;
