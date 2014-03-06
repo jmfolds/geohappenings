@@ -94,21 +94,26 @@
         <h4 class="modal-title" id="myModalLabel">About...</h4>
       </div>
       <div class="modal-body">
-        <p>Stay in touch with your map nerds at the ESRI Dev Summit. </p><br>
-        <p>This app is a real time social mapping app of the whats going down around Palm Springs.</p><br>
-        <p>Chat with fellow map nerds, holler if you are at a good presentation, or find some people to chill with.</p><br>
-        <p>Chat messages can be geolocated to see whats going down around palm springs. Pan around the map to see chats or just click on the message in the chat log to zoom to that location.</p><br>
-        <p>Check out our search page as well. Super neat auto complete enabled search query on our chat history. Easily browse for topics discussed at the Dev Summit.</p><br>
+        <p>What's GeoHappening?</p>
+        <p>Socialize at your local event or conference (ahem...Dev Summit) with this real time social mapping app.</p>
+
+        <p>Chat with fellow map nerds, holler if you are at a good presentation, or just find nearby awesomeness.</p>
+        <p>Pan around the map to see where people are talking (all messages are geolocated) or just click on a message in Happenings to zoom to that location.</p>
+        <p>Check out our search page as well. Super neat auto complete enabled search query on all message history allowing easy search for specific topics.</p>
         <hr>
+        <p>The JavaScripts:</p>
         <ul>
-        <p>The Javascripts:</p>
-          <li>Jquery.js</li>
+          <li>jQuery</li>
+          <li>Underscore.js</li>
           <li>Backbone.js</li>
-          <li>Arcgis.js</li>
+          <li>Twitter Bootstrap</li>
           <li>Typeahead.js</li>
           <li>Firebase.js</li>
-        </ul><br>
-        <p>Created by Jeremy Folds and Nick Volpe</p>
+          <li>Modernizr</li>
+          <li>And of course...ESRI JavaScript API (Dojo)</li>
+        </ul>
+        <hr>
+        <span>Developed by Jeremy Folds and Nick Volpe in Fort Collins, CO</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -147,10 +152,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="alert-h4">Oops! We couldn't get your location!</h4>
+        <h4 class="modal-title" id="alert-h4">Oops!</h4>
       </div>
       <div class="modal-body">
-        Something happened.
+        Looks like you forgot something...Please try again.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -158,7 +163,23 @@
     </div>
   </div>
 </div>
-
+        <!-- No Location Modal -->
+<div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog" aria-labelledby="alert-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="alert-h4">Oops!</h4>
+      </div>
+      <div class="modal-body">
+        We couldn't get your location, or one wasn't selected on the map. Please try again.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="aside">
     <div class="container-fluid">

@@ -32,7 +32,7 @@ initialize: function() {
 		var name = $('#name-input').val(); var text = $('#message-input').val();
 		if (!name || !text) { $('#alert-modal').modal(); return; }
 		if (!this.loc || !this.loc.lat || !this.loc.lon) {
-			$('#alert-modal').modal(); return; }
+			$('#no-location-modal').modal(); return; }
 		this.fb.on('value', function (ss) {	exists = (ss.val() !== null) });
 		if(!exists){ this.fb.child(name).set({text: name}) };
 		this.fb.child(name).child('messages').push({ name: name, text: text,

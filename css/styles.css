@@ -103,7 +103,9 @@ ul.nav.navbar-nav li {
     margin: 0;
 }
 
-
+#about-modal p {
+    padding-bottom: 10px;
+}
 /*=====MOBILE FIRST======*/
 
 
