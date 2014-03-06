@@ -176,6 +176,10 @@ input {
     display: none;
 }
 
+.navbar-nav > li > a {
+    padding-top: 5px;
+}
+
 /* map */
 #map {
 	position: absolute;
