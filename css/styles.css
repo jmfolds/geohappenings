@@ -90,6 +90,10 @@ ul.nav.navbar-nav li {
     background: #222;
 }
 
+.navbar-nav > li > a {
+    padding-top: 5px;
+}
+
 .show-map {
     cursor: pointer;
 }
@@ -176,10 +180,6 @@ input {
     display: none;
 }
 
-.navbar-nav > li > a {
-    padding-top: 5px;
-}
-
 /* map */
 #map {
 	position: absolute;
@@ -242,6 +242,9 @@ input {
     .container-fluid > .navbar-header {
         display: block;
         margin: 0;
+    }
+    .navbar-nav > li > a {
+        padding-top: 10px;
     }
     ul.nav.navbar-nav li {
         display: inline-block;
