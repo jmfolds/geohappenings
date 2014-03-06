@@ -108,63 +108,13 @@ ul.nav.navbar-nav li {
 }
 /*=====MOBILE FIRST======*/
 
-
-
-/* sidebar */
-#aside {
-    display: none;
-	position:absolute;
-    right: 0;
-    left: 0;
-    top: 50px;
-    bottom: 0;
-	background:#fff;
-	border-right:solid 1px #b3b5a5;
-	overflow: auto;
-	font-size: 16px;
-    z-index: 3;
-}
-#aside header {
-	padding: 18px 0 12px 0;
-}
-.search-section {
-	padding: 4px 0 16px 0;
-	border-bottom: 1px solid #d6d6d6;
-}
-.search-section .section-title {
-	font-size: 16px;
-	font-weight: 700;
-	margin-top: 8px;
-	margin-bottom: 14px;
-}
-.search-section .section-title a {
-	color: #909090;
-}
-.search-section .section-title a:hover {
-	color: #404040;
-}
-.search-section .section-title a.open {
-	color: #404040;
-}
-.search-section .section-title i {
-	float: right;
-	font-size:	14px;
-}
-.search-section .col-xs-3 {
-	padding-left: 0;
-}
-.side-label {
-	padding-right: 6px;
-	padding-top: 4px
-}
-.search-section:last-child {
-	border-color: transparent;
-}
 .row .col-xs-5 {
     margin: 4%;
 }
 .share-message {
-    text-align: right;
+    float: right;
+    margin: 30px 30px 0 0;
+    width: 85px;
 }
 
 
@@ -195,6 +145,15 @@ ul.nav.navbar-nav li {
 
 #about-modal li {
     margin-left: 6%;
+}
+
+.current-location {
+    float: right;
+    margin-right: 30px;
+}
+.location-selector {
+    width: 130px;
+    margin-left: 30px;
 }
 
 input {
