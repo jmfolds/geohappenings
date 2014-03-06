@@ -80,8 +80,12 @@ initialize: function() {
 		.attr('data-lat', msg.lat).attr('data-lon',msg.lon).appendTo($('#chat-container'));
 		if (msg.lat && msg.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
 			var pt = new esri.geometry.Point(msg.lon, msg.lat);
-			$this.map.graphics.add(new esri.Graphic(pt, $this.symbol));
+			var graphic = new esri.Graphic(pt, $this.symbol);//nv
+			$this.map.graphics.add(graphic);//nv
 		};
+ 		var info = new esri.InfoTemplate();//nv
+	  	info.setTitle(msg.name + ' ' + tE + ' minutes ago') & info.setContent(msg.text);//nv
+	  	graphic.setInfoTemplate(info);//nv
 	});
 },initTypeahead: function () {
 	$('#search-input').typeahead('destroy');
@@ -92,6 +96,5 @@ initialize: function() {
     var options = {	displayKey: 'text',	source: bloodhound.ttAdapter(),
         	templates: { suggestion: _.template('<strong><%=text%></strong>')}};
     $('#search-input').typeahead(null, options);
-}
-});
+}});
 new AppView();});
