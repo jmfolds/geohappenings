@@ -156,11 +156,15 @@ input {
     top: -29px;
 }
 .esriPopup .titleButton.close {
-    right: -1px;
+    right: 15px;
+    top: 1px;
+    opacity: 1;
+    background: none;
 
 }
 .esriPopup .titleButton.close:after {
-    content: url('../img/cancel-circle.png');
+    color: red;
+    content: url('../img/close-white.png');
 
 }
 .titleButton.maximize {
