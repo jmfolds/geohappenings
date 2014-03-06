@@ -85,6 +85,7 @@ ul.nav.navbar-nav li {
     padding-top: 5px;
 }
 
+
 .show-map {
     cursor: pointer;
 }
@@ -153,7 +154,7 @@ input {
 
 /* override esri popup */
 .esriPopup .titleButton {
-    top: -29px;
+    /*top: -29px;*/
 }
 .esriPopup .titleButton.close {
     right: 15px;
