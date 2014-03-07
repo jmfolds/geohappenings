@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>100 Lines</title>
+        <title>GeoHappenings</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- STYLES -->
@@ -77,7 +77,7 @@
                   <div id='add-event-btn' class='btn btn-primary location-selector'><i class="fa fa-map-marker"></i>Map Select</div>
                 </div>
                 <div class="row">
-                  <div class='col-xs-12 btn btn-success share-message'>Share!</div>
+                  <div class='col-xs-12 btn btn-success share-message disabled'>Share!</div>
                 </div>
 
       </div>
@@ -186,52 +186,21 @@
   </div>
 </div>
 
-<div id="aside">
-    <div class="container-fluid">
-        <header>
-            <p>
-            Welcome! Let others know about hot happenings! View "What's Happening" and then join in on the fun.
-            </p>
-        </header>
-        <form role="form" id="sidebar-search">
-            <div class="accordion" id="accordion-form">
-                <div class="panel search-section">
-                    <h3 class="section-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-a">Share What's Happening<i class="fa fa-angle-double-down"></i></a></h3>
-                    <div id="collapse-a" class="collapse in">
-                        <input type="text" id="name-input" class="form-control" placeholder="Name">
-                        <input type='text' id='title-input' class="form-control" placeholder='Title'>
-                        <input type='text' id='message-input' class="form-control" placeholder='Message'>
-                        <div class='btn btn-primary current-location'>Use my Location</div>
-                        <div id='add-event-btn' class='btn btn-primary'>Select on Map</div>
-                        <div class='btn btn-primary share-message'>Share!</div>
-
-
-                    </div>
-                </div>
-                <div class="panel search-section">
-                    <h3 class="section-title"><a class="accordion-toggle open" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-b">What's Happening Already?<i class="fa fa-angle-double-down"></i></a></h3>
-                    <div id="collapse-b" class="collapse">
-                        <div id="chat">
-                            <div id='welcome-msg'></div>
-                            <div id='msg-container'></div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="panel search-section">
-                    <h3 class="section-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-form" href="#collapse-c">Search<i class="fa fa-angle-double-down"></i></a></h3>
-                    <div id="collapse-c" class="collapse">
-                        <input id="search-input" type="text" class="form-control" placeholder="Search">
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div id="results-container"></div>
-    </div>
-</div>
 <div id="dev-summit">Dev-Summit</div>
 <div id="map-canvas">
     <div id="map"></div>
-</div>  
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <i class="fa fa-spinner fa-spin fa-5x loader"></i>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- libs -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>

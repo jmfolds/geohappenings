@@ -5,13 +5,12 @@ el: 'body',
 initialize: function() {
 	_.bindAll.apply(_, [this].concat(_.functions(this)));
 	var $this = this;
+	this.model = new (Backbone.Model.extend({}))();
+	this.model.on('change', this.toggleShare, this);
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
 	this.symbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([0, 255, 0, 0.25]));
 	this.map = new esri.Map('map', {basemap: 'osm', center: [-98.737039, 38.737039], zoom: 4 });
-	$('.share-message').on('click',function(evt) { $this.saveMsg(evt) });
-	$('#message-input').on('keypress',function(evt) { $this.saveMsg(evt) });
-	$('.current-location').on('click',function() { $this.getLocation() });
-	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
+	$('.current-location').on('click',function() { $this.getLocation($this.model) });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
 		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 15);
 		$('#search-modal').modal('hide');
@@ -24,39 +23,43 @@ initialize: function() {
 		});
 		$this.displayChatMessages() & $this.activateClickListener() & $this.initTypeahead();
 	});
-},saveMsg: function (evt) {
-	if (evt.keyCode === 13 || !evt.keyCode) { var exists; var tC = new Date().getTime();
-		var name = $('#name-input').val(); var text = $('#message-input').val();
-		if (!name || !text) { $('#alert-modal').modal(); return; }
-		if (!this.loc || !this.loc.lat || !this.loc.lon) {
-			$('#no-location-modal').modal(); return; }
-		this.fb.on('value', function (ss) {	exists = (ss.val() !== null) });
-		if(!exists){ this.fb.child(name).set({text: name}) };
-		this.fb.child(name).child('messages').push({ name: name, text: text,
-			lat: this.loc.lat, lon: this.loc.lon, timeStamp: tC });
-		$('#share-modal').modal('hide'); $('#message-input').val('');
-	}
-},getLocation: function () {
+},
+events: {
+	'keyup #message-input': 'toggleShare',	'keyup #name-input': 'toggleShare',
+	'click .share-message': 'saveMsg',	'click #add-event-btn': 'enableEventClickHandler'
+},
+toggleShare: function (model) {
+	$('#loader').modal('hide');
+	if ($('#name-input').val() && $('#message-input').val() && (this.model.get('loc'))) {
+		$('.share-message').removeClass('disabled');
+	} else { $('.share-message').addClass('disabled') };
+},
+saveMsg: function (evt) {
+	var loc = this.model.get('loc');
+	var exists; var tC = new Date().getTime();
+	var name = $('#name-input').val(); var text = $('#message-input').val();
+	if (!name || !text) { $('#alert-modal').modal(); return; }
+	if (!loc || !loc.lat || !loc.lon) {	$('#no-location-modal').modal(); return; };
+	this.fb.on('value', function (ss) {	exists = (ss.val() !== null) });
+	if(!exists){ this.fb.child(name).set({text: name}) };
+	this.fb.child(name).child('messages').push({ name: name, text: text,
+			lat: loc.lat, lon: loc.lon, timeStamp: tC });
+	$('#share-modal').modal('hide'); $('#message-input').val(''); this.model.set('loc', null);
+},getLocation: function (model) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(this.onLocationSuccess);
-	} else { $('#alert-modal').modal(); }	
-},onLocationSuccess: function(position) {
-	this.loc = {lat: String(position.coords.latitude), lon: String(position.coords.longitude)};
+		$('#loader').modal('show');
+		navigator.geolocation.getCurrentPosition(function (position) {
+			model.set('loc', {lat: String(position.coords.latitude), lon: String(position.coords.longitude)});
+		});
+	} else { $('#alert-modal').modal(); }
 },enableEventClickHandler: function() {
-	$('#add-event-btn').toggleClass('btn-warning');
-    var activate = $('#add-event-btn').hasClass('btn-warning');
-    var action = (activate) ? 'enableClickHandler' : 'disableClickHandler';
-	if (action === 'enableClickHandler') {
-	    this.mch = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
-	    $('#share-modal').modal('hide');
-	}
-	if (action === 'disableClickHandler') { dojo.disconnect(this.mch);
-		$('#add-event-btn').removeClass('btn-warning') };
+	if (this.mch){ dojo.disconnect(this.mch) };
+	this.mch = dojo.connect(this.map, 'onClick', dojo.hitch(this, this.onMapClick));
+	$('#share-modal').modal('hide');
 },onMapClick: function (evt) {
 	var x = esri.geometry.xyToLngLat(evt.mapPoint.x, evt.mapPoint.y, true);
-	this.loc = { lat: x[1], lon: x[0] };
+	this.model.set('loc', { lat: x[1], lon: x[0] });
     dojo.disconnect(this.mch) & $('#share-modal').modal('show');
-	$('#add-event-btn').removeClass('btn-warning');
 },activateClickListener: function() {
 	var $this = this;
 	$('.chat-item').on('click', function(evt) {
@@ -81,9 +84,8 @@ initialize: function() {
 		var graphic = new esri.Graphic(pt, $this.symbol);//nv
 		$this.map.graphics.add(graphic);//nv
 	};
-	var info = new esri.InfoTemplate();//nv
- 		info.setTitle(msg.name + ' ' + tE + ' minutes ago') & info.setContent(msg.text);//nv
-		graphic.setInfoTemplate(info);//nv
+	graphic.setInfoTemplate(new esri.InfoTemplate().setTitle(msg.name + ' ' + 
+		tE + ' minutes ago').setContent(msg.text));//nv
 });
 },initTypeahead: function () {
 	$('#search-input').typeahead('destroy');

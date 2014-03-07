@@ -14,7 +14,21 @@ ul, p {
 }
 /*==End Browser Resets==*/
 
-
+.loader {
+    color: #000;
+}
+#loader .modal-dialog {
+    margin: 200px auto;
+}
+#loader .modal-body {
+    text-align: center;
+}
+#loader .modal-content {
+    background-color: transparent;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; 
+}
 /* nav */
 .header-title p {
     line-height: 50px;
