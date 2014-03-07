@@ -182,6 +182,19 @@ input {
     z-index: 1;
 }
 
+#dev-summit {
+    cursor: pointer;
+    border: solid 1px #000;
+    z-index: 10;
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    border-radius: 6px;
+    padding: 5px;
+    color: #669900;
+    background: #000;
+}
+
 /*TWITTER TYPEAHEAD*/
 .twitter-typeahead {
     width: 100%;
