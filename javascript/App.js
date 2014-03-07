@@ -7,7 +7,7 @@ initialize: function() {
 	var $this = this;
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
 	this.symbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([0, 255, 0, 0.25]));
-	this.map = new esri.Map('map', {basemap: 'osm', center: [-116.5382, 33.8260], zoom: 10 });
+	this.map = new esri.Map('map', {basemap: 'osm', center: [-98.737039, 38.737039], zoom: 4 });
 	$('.share-message').on('click',function(evt) { $this.saveMsg(evt) });
 	$('#message-input').on('keypress',function(evt) { $this.saveMsg(evt) });
 	$('.current-location').on('click',function() { $this.getLocation() });
@@ -16,6 +16,7 @@ initialize: function() {
 		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 15);
 		$('#search-modal').modal('hide');
 	});
+	$('#dev-summit').on('click',function() { $this.map.centerAndZoom([-116.5382, 33.8260], 16)});
 	this.fb.on('value', function (ss) {
 		$this.messages = [];
 		_.each(ss.val(), function (item) { _.each(item.messages, function (item2) {
