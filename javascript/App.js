@@ -81,11 +81,10 @@ saveMsg: function (evt) {
 		.attr('data-lat', msg.lat).attr('data-lon',msg.lon).prependTo($('#chat-container'));
 	if (msg.lat && msg.lon && $this.map.graphics) {
 		var pt = new esri.geometry.Point(msg.lon, msg.lat);
-		var graphic = new esri.Graphic(pt, $this.symbol);//nv
-		$this.map.graphics.add(graphic);//nv
+		var graphic = new esri.Graphic(pt, $this.symbol);
+		$this.map.graphics.add(graphic);
 	};
-	graphic.setInfoTemplate(new esri.InfoTemplate().setTitle(msg.name + ' ' + 
-		tE + ' minutes ago').setContent(msg.text));//nv
+  graphic.setInfoTemplate(new esri.InfoTemplate().setTitle(msg.name+' '+tS).setContent(msg.text));
 });
 },initTypeahead: function () {
 	$('#search-input').typeahead('destroy');
