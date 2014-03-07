@@ -8,16 +8,12 @@ initialize: function() {
 	this.fb = new Firebase('https://luminous-fire-5575.firebaseio.com/users');
 	this.symbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([0, 255, 0, 0.25]));
 	this.map = new esri.Map('map', {basemap: 'osm', center: [-116.5382, 33.8260], zoom: 10 });
-	$('.about-modal').on('click',function() { $('#about-modal').modal()});
-	$('.search-modal').on('click',function() { $('#search-modal').modal()});
-	$('.share-modal').on('click',function() { $('#share-modal').modal()});
-	$('.chat-modal').on('click',function() { $('#chat-modal').modal()});
 	$('.share-message').on('click',function(evt) { $this.saveMsg(evt) });
 	$('#message-input').on('keypress',function(evt) { $this.saveMsg(evt) });
 	$('.current-location').on('click',function() { $this.getLocation() });
 	$('#add-event-btn').on('click',function() { $this.enableEventClickHandler() });
 	$('#search-input').on('typeahead:selected', function (evt, datum, name) {
-		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 25);
+		$this.map.centerAndZoom(new esri.geometry.Point(datum.lon, datum.lat), 15);
 		$('#search-modal').modal('hide');
 	});
 	this.fb.on('value', function (ss) {
@@ -64,29 +60,30 @@ initialize: function() {
 	var $this = this;
 	$('.chat-item').on('click', function(evt) {
 		var d = evt.currentTarget.dataset;
-		$this.map.centerAndZoom(new esri.geometry.Point(d.lon, d.lat), 25);
+		$this.map.centerAndZoom(new esri.geometry.Point(d.lon, d.lat), 15);
 		$('#chat-modal').modal('hide');
 	});
 },displayChatMessages: function() {
 	var $this = this; $('#chat-container').empty();
 	this.messages.sort(function (a, b) { if (a.timeStamp > b.timeStamp) { return 1; }
-	    if (a.timeStamp < b.timeStamp) { return -1; } return 0;
+		if (a.timeStamp < b.timeStamp) { return -1; } return 0;
 	});
 	_.each(this.messages, function (msg) {
-		var tC = new Date().getTime();
-		tE =  Math.floor((tC - msg.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
-		$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' +
-		msg.name +':  '+ tE + ' minutes ago</div><div>'+ msg.text + '</div>')
+	var tC = new Date().getTime();
+	tE = Math.floor((tC - msg.timeStamp) / 1000 / 60); //get time elapsed since the previous messages in firebase
+	tS = (tE > 60) ? Math.floor((tE * 60) / 3600)  + ' hours ago' :  tE + ' minutes ago';
+	$('<li class="list-group-item chat-item"></li>').append('<div class="chat-date">' +
+		msg.name +':  '+ tS +  '</div><div>'+ msg.text + '</div>')
 		.attr('data-lat', msg.lat).attr('data-lon',msg.lon).prependTo($('#chat-container'));
-		if (msg.lat && msg.lon && $this.map.graphics) { //i was getting an error, cannot call add of null, have you seen this?
-			var pt = new esri.geometry.Point(msg.lon, msg.lat);
-			var graphic = new esri.Graphic(pt, $this.symbol);//nv
-			$this.map.graphics.add(graphic);//nv
-		};
- 		var info = new esri.InfoTemplate();//nv
-	  	info.setTitle(msg.name + ' ' + tE + ' minutes ago') & info.setContent(msg.text);//nv
-	  	graphic.setInfoTemplate(info);//nv
-	});
+	if (msg.lat && msg.lon && $this.map.graphics) {
+		var pt = new esri.geometry.Point(msg.lon, msg.lat);
+		var graphic = new esri.Graphic(pt, $this.symbol);//nv
+		$this.map.graphics.add(graphic);//nv
+	};
+	var info = new esri.InfoTemplate();//nv
+ 		info.setTitle(msg.name + ' ' + tE + ' minutes ago') & info.setContent(msg.text);//nv
+		graphic.setInfoTemplate(info);//nv
+});
 },initTypeahead: function () {
 	$('#search-input').typeahead('destroy');
 	var bloodhound = new Bloodhound({
