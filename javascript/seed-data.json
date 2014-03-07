@@ -1,0 +1,200 @@
+{
+  "users" : {
+    "wtf" : {
+      "messages" : {
+        "-JHL2R9_ark5E2rdfOEW" : {
+          "text" : "wtf firebase",
+          "lat" : "40.58526",
+          "timeStamp" : 1394086813382,
+          "name" : "wtf",
+          "lon" : "-105.084423"
+        }
+      }
+    },
+    "tester" : {
+      "messages" : {
+        "-JHKvXkM2agaFtC82v8w" : {
+          "text" : "testing scroll",
+          "lat" : "40.58526",
+          "timeStamp" : 1394084743234,
+          "name" : "tester",
+          "lon" : "-105.084423"
+        }
+      }
+    },
+    "jmfolds" : {
+      "messages" : {
+        "-JHL4Ms1ks-gV74HHVbH" : {
+          "text" : "How accurate is this",
+          "lat" : "40.5877628",
+          "timeStamp" : 1394087394353,
+          "name" : "jmfolds",
+          "lon" : "-105.106668"
+        }
+      }
+    },
+    "J" : {
+      "messages" : {
+        "-JHKYyB5Rr2_5EuRqLni" : {
+          "text" : "a",
+          "lat" : "40.5878199",
+          "timeStamp" : 1394078639061,
+          "name" : "J",
+          "lon" : "-105.1066161"
+        }
+      }
+    },
+    "j" : {
+      "messages" : {
+        "-JHKpIxcZ3Rv4YJV_FW_" : {
+          "text" : "g",
+          "lat" : "40.5878161",
+          "timeStamp" : 1394083184347,
+          "name" : "j",
+          "lon" : "-105.1066265"
+        }
+      }
+    },
+    "nick" : {
+      "messages" : {
+        "-JHL5Sm7adakn6PZDwlu" : {
+          "text" : "testing my descending order",
+          "lat" : "40.58526",
+          "timeStamp" : 1394087606418,
+          "name" : "nick",
+          "lon" : "-105.084423"
+        },
+        "-JHKJDMdON9YRNIZL00c" : {
+          "text" : "just started coding for the night",
+          "lat" : 33.811244849900945,
+          "timeStamp" : 1394074436105,
+          "name" : "nick",
+          "lon" : -116.51074217968555
+        }
+      }
+    },
+    "Jeremy Folds" : {
+      "text" : "Jeremy Folds",
+      "messages" : {
+        "-JHIHt_DtEBMAUCD6Lma" : {
+          "text" : "Hello from Samsung Galaxy S4! ",
+          "lat" : 40.58707254525617,
+          "timeStamp" : 1394040608605,
+          "name" : "Jeremy Folds",
+          "lon" : -105.07707049521298
+        },
+        "-JHKGLsmU5QDLkNCPTiI" : {
+          "text" : "Does this clear?",
+          "lat" : "40.587778199999995",
+          "timeStamp" : 1394073759460,
+          "name" : "Jeremy Folds",
+          "lon" : "-105.1066091"
+        },
+        "-JHKG_IcMF3-CKM1ksZc" : {
+          "text" : "again",
+          "lat" : 33.99076871552792,
+          "timeStamp" : 1394073818549,
+          "name" : "Jeremy Folds",
+          "lon" : -116.49632262402123
+        },
+        "-JHKL32_ce0r-NMpu9HK" : {
+          "text" : "What's up Nick? I'm working on the navbar...don't worry about auto closing the dropdown",
+          "lat" : "40.587794099999996",
+          "timeStamp" : 1394074993074,
+          "name" : "Jeremy Folds",
+          "lon" : "-105.10666560000001"
+        },
+        "-JHI4JCUK9Hbkpz69MiU" : {
+          "text" : "Hello from DTSAgile!",
+          "lat" : "40.5929712",
+          "timeStamp" : 1394037048222,
+          "name" : "Jeremy Folds",
+          "lon" : "-105.0801604"
+        },
+        "-JHKG3c96s4cz4J5-Dw4" : {
+          "text" : "Hmmmmm",
+          "lat" : 33.84204720779959,
+          "timeStamp" : 1394073684671,
+          "name" : "Jeremy Folds",
+          "lon" : -116.53134154491991
+        },
+        "-JHJmqiMTYPjuHRwxyUG" : {
+          "text" : "A test message",
+          "lat" : 33.956602843921615,
+          "timeStamp" : 1394065763418,
+          "name" : "Jeremy Folds",
+          "lon" : -116.4928893964824
+        }
+      }
+    },
+    "a" : {
+      "messages" : {
+        "-JHKfiJDVmL2cuJ5Ynyp" : {
+          "text" : "a",
+          "lat" : "40.5878389",
+          "timeStamp" : 1394080671162,
+          "name" : "a",
+          "lon" : "-105.1066395"
+        }
+      }
+    },
+    "iPad" : {
+      "messages" : {
+        "-JHN8nutijujTaOYHJfj" : {
+          "text" : "Tester",
+          "lat" : "40.59290320195627",
+          "timeStamp" : 1394122112083,
+          "name" : "iPad",
+          "lon" : "-105.08011174593847"
+        },
+        "-JHN8wpj5nTtempXkVW_" : {
+          "text" : "Yo",
+          "lat" : 33.95651385237646,
+          "timeStamp" : 1394122148621,
+          "name" : "iPad",
+          "lon" : -116.49001406841639
+        }
+      }
+    },
+    "bignick" : {
+      "messages" : {
+        "-JHKsgH2XzWtyg1o_u22" : {
+          "text" : "testing the select on mapp button",
+          "lat" : 33.82252183005825,
+          "timeStamp" : 1394083995819,
+          "name" : "bignick",
+          "lon" : -116.07901763423567
+        }
+      }
+    },
+    "bbinckes" : {
+      "messages" : {
+        "-JHNCKFXR4RtANoNgrsV" : {
+          "text" : "Denver bound.",
+          "lat" : "40.5308524",
+          "timeStamp" : 1394123035382,
+          "name" : "bbinckes",
+          "lon" : "-105.0047503"
+        },
+        "-JHJo5wACpcich7NogBb" : {
+          "text" : "going to yoga.  namaste",
+          "lat" : "40.5930498",
+          "timeStamp" : 1394066091149,
+          "name" : "bbinckes",
+          "lon" : "-105.0801485"
+        }
+      }
+    },
+    "a user id" : {
+      "messages" : {
+        "-JHKXIKwww6DMniplNPy" : {
+          "text" : "Yep",
+          "lat" : 33.91330637097347,
+          "timeStamp" : 1394078201406,
+          "name" : "a user id",
+          "lon" : -116.54576110058399
+        }
+      }
+    }
+  }
+}
