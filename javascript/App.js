@@ -48,8 +48,8 @@ saveMsg: function (evt) {
 },getLocation: function (model) {
 	if (navigator.geolocation) {
 		$('#loader').modal('show');
-		navigator.geolocation.getCurrentPosition(function (position) {
-			model.set('loc', {lat: String(position.coords.latitude), lon: String(position.coords.longitude)});
+		navigator.geolocation.getCurrentPosition(function (p) {
+			model.set('loc', {lat: String(p.coords.latitude), lon: String(p.coords.longitude)});
 		});
 	} else { $('#alert-modal').modal(); }
 },enableEventClickHandler: function() {
