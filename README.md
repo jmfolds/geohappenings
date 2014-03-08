@@ -24,7 +24,6 @@ The JavaScripts:
 * [ESRI JavaScript API](https://developers.arcgis.com/javascript/jsapi)
 * [Dojo](http://dojotoolkit.org)
 * [Bootstrap](http://getbootstrap.com)
-
 <br>
 * Also using the Ubuntu Web Font from the Google Font API and FontAwesome.
 
