@@ -1,29 +1,24 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
+    <li><a ng-href="/about">About</a></li>
+    <li><a ng-href="#contact">Contact</a></li>
   </ul>
-  <h3 class="text-muted">angular playground</h3>
+  <h3 class="text-muted">Local Sage</h3>
 </div>
 
 
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
-</div>
+<table class="table">
+  <thead>
+    <tr><th colspan="4">A Table Title</th></tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="people in awesomePeople">
+      <td>{{$index + 1}}</td>
+      <td>
+        {{people.name}}
+      </td>
+    </tr>
+  </tbody>
+</table>
